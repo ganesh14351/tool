@@ -1,0 +1,77 @@
+# Create an HTML page with 20+ ad sections using a clean layout
+multi_ad_html = """<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="refresh" content="15" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ganesh's Ad Page</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f4f7fa;
+      color: #333;
+    }
+    header {
+      background-color: #004aad;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    .ad-box {
+      background: #fff;
+      margin: 15px auto;
+      padding: 15px;
+      max-width: 90%;
+      border: 2px dashed #bbb;
+      border-radius: 10px;
+      text-align: center;
+    }
+    footer {
+      background-color: #eee;
+      text-align: center;
+      padding: 20px;
+      margin-top: 30px;
+      font-size: 14px;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Ganesh's Multi Ad Display</h1>
+</header>
+"""
+
+# Add 25 ad boxes
+for i in range(1, 26):
+    multi_ad_html += f"""
+<div class="ad-box">
+  <h3>Ad Spot {i}</h3>
+  <script type="text/javascript" src="//www.profitabledisplaynetwork.com/AD-{i}.js"></script>
+</div>
+"""
+
+# Footer
+multi_ad_html += """
+<footer>
+  &copy; 2025 Ganesh's Ad Network — All Rights Reserved
+</footer>
+
+</body>
+</html>
+"""
+
+# Save and zip the file
+multi_ad_folder = Path("/mnt/data/ganesh-multi-ads")
+multi_ad_folder.mkdir(parents=True, exist_ok=True)
+multi_ad_path = multi_ad_folder / "index.html"
+multi_ad_path.write_text(multi_ad_html)
+
+multi_ad_zip = "/mnt/data/ganesh-multi-ads.zip"
+with zipfile.ZipFile(multi_ad_zip, "w") as zipf:
+    zipf.write(multi_ad_path, arcname="index.html")
+
+multi_ad_zip
