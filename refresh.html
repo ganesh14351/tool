@@ -1,0 +1,105 @@
+# Update the site design based on new instructions:
+# - Remove all mentions of "auto-refresh"
+# - Add more column-style sections (e.g., 3 columns with content)
+
+updated_html = """<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="refresh" content="15">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ganesh's Info Portal</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #f0f4ff, #dcefff);
+      color: #333;
+    }
+    header {
+      background-color: #005bbb;
+      color: white;
+      padding: 30px 20px;
+      text-align: center;
+    }
+    section.columns {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 40px 20px;
+      gap: 20px;
+    }
+    .column-box {
+      background: white;
+      flex: 1 1 250px;
+      max-width: 300px;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .ad-box {
+      background: white;
+      margin: 40px auto;
+      padding: 20px;
+      max-width: 700px;
+      border: 2px dashed #bbb;
+      border-radius: 10px;
+      text-align: center;
+    }
+    footer {
+      background-color: #eee;
+      color: #666;
+      padding: 20px;
+      text-align: center;
+      font-size: 14px;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Welcome to Ganesh's Info Portal</h1>
+  <p>Get the latest updates and stats in real time.</p>
+</header>
+
+<section class="columns">
+  <div class="column-box">
+    <h3>Update 1</h3>
+    <p>This is the first live update block. You can use it for news or info.</p>
+  </div>
+  <div class="column-box">
+    <h3>Update 2</h3>
+    <p>This is the second block with separate content. Add anything you like.</p>
+  </div>
+  <div class="column-box">
+    <h3>Update 3</h3>
+    <p>This is the third section for data, offers, or live stats.</p>
+  </div>
+</section>
+
+<div class="ad-box">
+  <h3>Your Ad Will Appear Below</h3>
+  <!-- Paste your Adsterra or other ad code below -->
+  <script type="text/javascript" src="//www.profitabledisplaynetwork.com/YOUR-AD-CODE.js"></script>
+</div>
+
+<footer>
+  &copy; 2025 Ganesh's Portal
+</footer>
+
+</body>
+</html>
+"""
+
+# Write the updated HTML
+updated_html_path = new_site_folder / "index.html"
+updated_html_path.write_text(updated_html)
+
+# Zip it again
+updated_zip_path = "/mnt/data/updated-original-refresh-site.zip"
+with zipfile.ZipFile(updated_zip_path, 'w') as zipf:
+    zipf.write(updated_html_path, arcname="index.html")
+
+updated_zip_path
