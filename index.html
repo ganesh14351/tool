@@ -1,0 +1,168 @@
+from pathlib import Path
+import zipfile
+
+# Re-create the homepage folder and index.html after reset
+homepage_html = """<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="refresh" content="15" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ganesh's Home Page</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f7f9fc;
+      color: #333;
+    }
+    header {
+      background-color: #004aad;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+    .ad-banner {
+      text-align: center;
+      padding: 20px;
+      background: #fff;
+      margin: 20px;
+      border: 2px dashed #ccc;
+      border-radius: 8px;
+    }
+    .main-content {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 20px;
+    }
+    .left-section {
+      flex: 3;
+      padding: 20px;
+    }
+    .info-grid {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .info-box {
+      flex: 1 1 30%;
+      background: #fff;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+    .middle-ad {
+      margin: 30px 0;
+      padding: 20px;
+      background: #fff;
+      border: 2px dashed #ccc;
+      border-radius: 10px;
+      text-align: center;
+    }
+    .right-sidebar {
+      flex: 1;
+      padding: 20px;
+    }
+    .sidebar-ad {
+      background: #fff;
+      padding: 20px;
+      border: 2px dashed #ccc;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+    footer {
+      background-color: #eee;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+      font-size: 14px;
+      color: #777;
+    }
+
+    @media (max-width: 768px) {
+      .info-box {
+        flex: 1 1 100%;
+      }
+      .main-content {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Ganesh's Ad Portal</h1>
+  <p>Multiple ad zones with live content</p>
+</header>
+
+<div class="ad-banner">
+  <h3>Top Ad</h3>
+  <script type="text/javascript" src="//www.profitabledisplaynetwork.com/TOP-AD.js"></script>
+</div>
+
+<div class="main-content">
+  <div class="left-section">
+    <div class="info-grid">
+      <div class="info-box">
+        <h4>News</h4>
+        <p>Update users with latest offers or content.</p>
+      </div>
+      <div class="info-box">
+        <h4>Stats</h4>
+        <p>Show earnings, users, or live data here.</p>
+      </div>
+      <div class="info-box">
+        <h4>More Info</h4>
+        <p>Use this for promos, affiliate links, etc.</p>
+      </div>
+    </div>
+
+    <div class="middle-ad">
+      <h3>Middle Ad</h3>
+      <script type="text/javascript" src="//www.profitabledisplaynetwork.com/MID-AD.js"></script>
+    </div>
+
+    <p style="margin-top:30px;">Add more content here if needed. This space can hold text, buttons, links, or anything else.</p>
+  </div>
+
+  <div class="right-sidebar">
+    <div class="sidebar-ad">
+      <h4>Sidebar Ad 1</h4>
+      <script type="text/javascript" src="//www.profitabledisplaynetwork.com/SIDE-AD1.js"></script>
+    </div>
+    <div class="sidebar-ad">
+      <h4>Sidebar Ad 2</h4>
+      <script type="text/javascript" src="//www.profitabledisplaynetwork.com/SIDE-AD2.js"></script>
+    </div>
+  </div>
+</div>
+
+<div class="ad-banner">
+  <h3>Bottom Ad</h3>
+  <script type="text/javascript" src="//www.profitabledisplaynetwork.com/BOTTOM-AD.js"></script>
+</div>
+
+<footer>
+  &copy; 2025 Ganesh's Portal — All rights reserved
+</footer>
+
+</body>
+</html>
+"""
+
+# Create the homepage folder and save HTML
+homepage_folder = Path("/mnt/data/ganesh-homepage")
+homepage_folder.mkdir(parents=True, exist_ok=True)
+homepage_file = homepage_folder / "index.html"
+homepage_file.write_text(homepage_html)
+
+# Zip the folder
+homepage_zip = "/mnt/data/ganesh-homepage.zip"
+with zipfile.ZipFile(homepage_zip, 'w') as zipf:
+    zipf.write(homepage_file, arcname="index.html")
+
+homepage_zip
